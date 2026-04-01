@@ -1,27 +1,36 @@
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        // Create an ArrayList to store passenger bogies
-        ArrayList<String> passengerBogies = new ArrayList<>();
+        // Create a HashSet to store unique Bogie IDs
+        Set<String> bogieIds = new HashSet<>();
 
-        // 1. Adding passenger bogies: Sleeper, AC Chair, First Class
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        System.out.println("--- Train Consist Management: UC3 ---");
 
-        // 2. Display the bogies after insertion
-        System.out.println("Train Consist after adding bogies: " + passengerBogies);
+        // Adding unique bogie IDs
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG103");
 
-        // 3. Remove one bogie (e.g., AC Chair)
-        passengerBogies.remove("AC Chair");
-        System.out.println("Train Consist after removing 'AC Chair': " + passengerBogies);
+        // Attempting to add a duplicate ID (BG101)
+        System.out.println("Attempting to add duplicate ID: BG101");
+        boolean isAdded = bogieIds.add("BG101");
 
-        // 4. Check if a specific bogie (e.g., Sleeper) exists
-        boolean hasSleeper = passengerBogies.contains("Sleeper");
-        System.out.println("Does the train contain a 'Sleeper' bogie? " + hasSleeper);
+        if (!isAdded) {
+            System.out.println("Duplicate ignored: BG101 is already in the system.");
+        }
 
-        // 5. Print the final state of the list [cite: 1]
-        System.out.println("Final Train Consist: " + passengerBogies);
+        // Adding another unique ID
+        bogieIds.add("BG104");
+
+        // Displaying the final list of unique Bogie IDs [cite: 1]
+        System.out.println("\nFinal Unique Bogie IDs in Train Consist:");
+        for (String id : bogieIds) {
+            System.out.println("- " + id);
+        }
+
+        // Note: HashSet does not maintain insertion order [cite: 1]
+        System.out.println("\nTotal unique bogies: " + bogieIds.size());
     }
 }
