@@ -1,36 +1,29 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a HashSet to store unique Bogie IDs
-        Set<String> bogieIds = new HashSet<>();
+        // Create a LinkedList for the consist
+        LinkedList<String> trainConsist = new LinkedList<>();
 
-        System.out.println("--- Train Consist Management: UC3 ---");
+        // Add initial bogies: Engine, Sleeper, AC, Cargo, Guard
+        trainConsist.add("Engine");
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC");
+        trainConsist.add("Cargo");
+        trainConsist.add("Guard");
 
-        // Adding unique bogie IDs
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
-        bogieIds.add("BG103");
+        System.out.println("Initial Train Consist: " + trainConsist);
 
-        // Attempting to add a duplicate ID (BG101)
-        System.out.println("Attempting to add duplicate ID: BG101");
-        boolean isAdded = bogieIds.add("BG101");
+        // Insert a Pantry Car at position 2 (index 2)
+        // This demonstrates the add(index, element) method
+        trainConsist.add(2, "Pantry Car");
+        System.out.println("After adding Pantry Car at position 2: " + trainConsist);
 
-        if (!isAdded) {
-            System.out.println("Duplicate ignored: BG101 is already in the system.");
-        }
+        // Remove the first and last bogie using specific LinkedList methods [cite: 1]
+        trainConsist.removeFirst(); // Removes Engine [cite: 1]
+        trainConsist.removeLast();  // Removes Guard [cite: 1]
 
-        // Adding another unique ID
-        bogieIds.add("BG104");
-
-        // Displaying the final list of unique Bogie IDs [cite: 1]
-        System.out.println("\nFinal Unique Bogie IDs in Train Consist:");
-        for (String id : bogieIds) {
-            System.out.println("- " + id);
-        }
-
-        // Note: HashSet does not maintain insertion order [cite: 1]
-        System.out.println("\nTotal unique bogies: " + bogieIds.size());
+        // Display the final ordered train consist [cite: 1]
+        System.out.println("Final Ordered Train Consist: " + trainConsist);
     }
 }
